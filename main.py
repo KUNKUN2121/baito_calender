@@ -1,10 +1,21 @@
 import cv2
+import datetime as dt
+import locale
+import calendar
+locale.setlocale(locale.LC_TIME, 'ja_JP.UTF-8')
 
+year = 2023
+mounth = 4
 
 def onMouse(event, x, y, flags, params):
     if event == cv2.EVENT_LBUTTONDOWN:
         print(x, y)
 
+
+date = dt.date(year, mounth, 1)
+print("曜日数" + str(date.weekday()))
+print("曜日" + str(date.strftime('%A')))
+print("一ヶ月の日数" + str(calendar.monthrange(year, mounth)[1]))
 
 img = cv2.imread('calender.jpg')
 
@@ -52,15 +63,6 @@ for i in range(6):
     temp1y = int(temp1y + height7)
     temp2x = int(temp1x + width7)
     temp2y = int(temp1y + height7)
-    
-    
-# cv2.rectangle(img,
-#               pt1=(leftWidth,upHeight),
-#               pt2=(rightWidth,downHeight),
-#               color=(164, 35, 228),
-#               thickness=5,
-#               lineType=cv2.LINE_4,
-#               )
 
 cv2.imshow('Window', img)
 cv2.setMouseCallback('Window', onMouse)
