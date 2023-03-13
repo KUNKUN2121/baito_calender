@@ -42,23 +42,35 @@ temp1x = int(leftWidth)
 temp1y = int(upHeight)
 temp2x = int(temp1x + width7)
 temp2y =  int(temp1y + height7)
-col = 0
+counuter = 0
 
 # 6回たて回す
 for i in range(6):
     for n in range(7):
-        # 描画
-        cv2.rectangle(img,
-            pt1=(temp1x, temp1y),
-            pt2=(temp2x, temp2y),
-            color=(0, 25, 0),
-            thickness=10,
-            lineType=cv2.LINE_4,
-            shift=0)
-        
-        temp1x = temp1x + width7
-        temp2x = temp2x + width7
-    col = col + 30
+        if (counuter > calendar.monthrange(year, mounth)[1] + date.weekday()):
+            break
+        else :
+            if counuter >  date.weekday():
+                # 描画     
+                cv2.rectangle(img,
+                    pt1=(temp1x, temp1y),
+                    pt2=(temp2x, temp2y),
+                    color=(0, 25, 0),
+                    thickness=10,
+                    lineType=cv2.LINE_4,
+                    shift=0)
+                cv2.putText(img,
+                    text=str(n),
+                    org=(temp1x, temp1y),
+                    fontFace=cv2.FONT_HERSHEY_SIMPLEX,
+                    fontScale=1.0,
+                    color=(0, 255, 0),
+                    thickness=2,
+                    lineType=cv2.LINE_4) 
+            temp1x = temp1x + width7
+            temp2x = temp2x + width7
+            counuter = counuter+ 1
+
     temp1x = int(leftWidth)
     temp1y = int(temp1y + height7)
     temp2x = int(temp1x + width7)
