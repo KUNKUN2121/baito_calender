@@ -5,7 +5,8 @@ import calendar
 locale.setlocale(locale.LC_TIME, 'ja_JP.UTF-8')
 
 year = 2023
-mounth = 4
+mounth = 5
+img = cv2.imread('pic/202305.jpg')
 
 def onMouse(event, x, y, flags, params):
     if event == cv2.EVENT_LBUTTONDOWN:
@@ -17,7 +18,6 @@ print("曜日数" + str(date.weekday()))
 print("曜日" + str(date.strftime('%A')))
 print("一ヶ月の日数" + str(calendar.monthrange(year, mounth)[1]))
 
-img = cv2.imread('calender.jpg')
 
 height, width = img.shape[:2]
 print(height)  # 1241
